@@ -83,13 +83,12 @@ public class Calculator {
 		
 		double radius = 0;
 		
-		switch(dimension) {
-			case 1: 
-				radius = Math.abs(beginCoordinates[0] - endCoordinates[0]);
-			case 2: 
-				radius = Math.abs(beginCoordinates[0] - endCoordinates[0]);
+		if (dimension == 1) {
+			radius = Math.abs(beginCoordinates[0] - endCoordinates[0]);
+		} else {
+			radius = Math.sqrt(Math.abs(beginCoordinates[0] - endCoordinates[0]));
 		}
-		
+
 		return radius;
 	}
 
