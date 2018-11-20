@@ -3,7 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.calculator.Calculator;
+import com.example.calculator.Calculator1D;
 import com.example.point.Point;
 
 public class App {
@@ -20,7 +20,7 @@ public class App {
 			yValues.add(Math.sin(i * 0.2));
 		}
 		
-		Calculator calculator = Calculator.create1DCalculator(xValues, yValues, 0, 0.1);
+		Calculator1D calculator = Calculator1D.create1DCalculator(xValues, yValues, 0, 0.1);
 		calculator.calculateConstants1D();
 		
 		//
@@ -47,7 +47,7 @@ public class App {
 		ksietaPoints.add(new Point(new double[] {1.0, 3.0}));
 		ksietaPoints.add(new Point(new double[] {1.0, 2.0}));
 		
-		Calculator calculator = Calculator.create2DCalculator(xyPoints, ksietaPoints, 0, 0.1);
+		Calculator1D calculator = Calculator1D.create2DCalculator(xyPoints, ksietaPoints, 0, 0.1);
 		calculator.calculateConstants2D();
 		
 		//
