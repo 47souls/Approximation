@@ -12,9 +12,18 @@ import com.example.point.Point;
  */
 public class Calculator {
 
+	// 1D stuff
 	private List<Double> constants;
 	private List<Double> x;
 	private List<Double> y;
+	
+	// 2D stuff
+	private List<Point> xyPoints;
+	private List<Point> ksietaPoints;
+	private List<Double> etaConstants;
+	private List<Double> ksiConstants;
+	
+	// general stuff should be moved to parent abstract
 	public int typeIndex;
 	public double e;
 
@@ -29,12 +38,28 @@ public class Calculator {
 		this.typeIndex = typeIndex;
 		this.e = e;
 	}
+	
+	private Calculator(List<Point> xyPoints, List<Point> ksietaPoints) {
+		this.xyPoints = xyPoints;
+		this.y = y;
+	}
+
+	private Calculator(List<Double> x, List<Double> y, int typeIndex, double e) {
+		this.x = x;
+		this.y = y;
+		this.typeIndex = typeIndex;
+		this.e = e;
+	}
 
 	public static Calculator createCalculatorFromConstants(List<Double> x, List<Double> y) {
 		return new Calculator(x, y);
 	}
 
-	public static Calculator createCalculator(List<Double> x, List<Double> y, int typeIndex, double e) {
+	public static Calculator create1DCalculator(List<Double> x, List<Double> y, int typeIndex, double e) {
+		return new Calculator(x, y, typeIndex, e);
+	}
+	
+	public static Calculator create2DCalculator(List<Point> xyPoints, List<Double> ksietaPoints, int typeIndex, double e) {
 		return new Calculator(x, y, typeIndex, e);
 	}
 
@@ -112,7 +137,85 @@ public class Calculator {
 
 	// calculation specific methods
 
-	public List<Double> calculateConstants() {
+	public List<Double> calculateConstants1D() {
+		int counter = 0;
+		int numberOfLines = x.size();
+		double fi[][] = new double[numberOfLines][numberOfLines];
+		List<Double> oldX = new ArrayList<>();
+		List<Double> oldY = new ArrayList<>();
+
+		for (int i = 0; i < x.size(); i++) {
+			oldX.add(i, x.get(i));
+		}
+
+		for (int i = 0; i < y.size(); i++) {
+			oldY.add(i, y.get(i));
+		}
+
+		/* Calculating fi[][] using radial function */
+
+		for (int i = 0; i < numberOfLines; i++) {
+			for (int j = 0; j < numberOfLines; j++) {
+				switch (typeIndex) {
+				case 0:
+					fi[i][j] = multiQuadroRadialFunction(radius(oldX.get(i), oldX.get(j)), e);
+					break;
+				case 1:
+					fi[i][j] = revertedMultiQuadroRadialFunction(radius(oldX.get(i), oldX.get(j)), e);
+					break;
+				case 2:
+					fi[i][j] = revertedQuadroRadialFunction(radius(oldX.get(i), oldX.get(j)), e);
+					break;
+				case 3:
+					fi[i][j] = gaussRadialFunction(radius(oldX.get(i), oldX.get(j)), e);
+					break;
+				}
+				System.out.print(fi[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+		System.out.println("Y= ");
+		for (int i = 0; i < numberOfLines; i++) {
+			System.out.println(y.get(i));
+		}
+
+		/* Algorithm go ahead */
+		while (counter < numberOfLines) {
+			double temp = fi[counter][counter];
+			double temp3 = oldY.get(counter);
+			for (int i = counter; i < numberOfLines - 1; i++) {
+				double temp2 = fi[i + 1][counter];
+				for (int j = counter; j < numberOfLines - 1; j++) {
+					fi[i + 1][j + 1] = fi[i + 1][j + 1] - fi[counter][j + 1] * temp2 / temp;
+				}
+				oldY.set(i + 1, oldY.get(i + 1) - temp3 * temp2 / temp);
+			}
+			oldY.set(counter, oldY.get(counter) / temp);
+			for (int i = counter; i < numberOfLines; i++) {
+				fi[counter][i] = fi[counter][i] / temp;
+			}
+			for (int i = counter + 1; i < numberOfLines; i++) {
+				fi[i][counter] = 0;
+			}
+			counter++;
+		}
+
+		/* Algorithm go behind */
+		oldX.set(numberOfLines - 1, oldY.get(numberOfLines - 1));
+		for (int i = numberOfLines - 2; i >= 0; i--) {
+			double temp = 0;
+			for (int j = i + 1; j < numberOfLines; j++) {
+				temp += fi[i][j] * oldX.get(j);
+			}
+			oldX.set(i, oldY.get(i) - temp);
+		}
+
+		constants = oldX;
+		return oldX;
+	}
+	
+	public List<Double> calculateConstants2D() {
 		int counter = 0;
 		int numberOfLines = x.size();
 		double fi[][] = new double[numberOfLines][numberOfLines];
@@ -190,7 +293,39 @@ public class Calculator {
 		return oldX;
 	}
 
-	public double approximate(double x0) {
+	public double approximate1D(double x0) {
+		double sum = 0;
+		double fi = 0;
+		for (int i = 0; i < constants.size(); i++) {
+			System.out.println("Contant(" + i + "): " + constants.get(i));
+			System.out.println("X(" + i + "): " + x.get(i));
+			
+			// Determining distance from x0 to each x
+			double radius = radius(x0, x.get(i));
+			
+			switch (typeIndex) {
+			case 0:
+				fi = multiQuadroRadialFunction(radius, e);
+				break;
+			case 1:
+				fi = revertedMultiQuadroRadialFunction(radius, e);
+				break;
+			case 2:
+				fi = revertedQuadroRadialFunction(radius, e);
+				break;
+			case 3:
+				fi = gaussRadialFunction(radius, e);
+				break;
+			}
+
+			sum += constants.get(i) * fi;
+		}
+		
+		System.out.println("Sum : " + sum);
+		return sum;
+	}
+	
+	public Point approximate2D(Point point) {
 		double sum = 0;
 		double fi = 0;
 		for (int i = 0; i < constants.size(); i++) {

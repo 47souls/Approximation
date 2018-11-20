@@ -1,6 +1,6 @@
 package com.example.point;
 
-public abstract class Point {
+public class Point {
 	private int dimension;
 	private double[] coordinates;
 
