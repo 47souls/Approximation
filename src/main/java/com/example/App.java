@@ -3,28 +3,27 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.calculator.Calculator1D;
+import com.example.calculator.Calculator2D;
 import com.example.point.Point;
 
 public class App {
 	public static void main(String[] args) {
 		
 		// 1D case
-		List<Double> xValues = new ArrayList<>();
-		for (int i = 0; i < 12; i++) {
-			xValues.add(i * 0.2);
-		}
-
-		List<Double> yValues = new ArrayList<>();
-		for (int i = 0; i < 12; i++) {
-			yValues.add(Math.sin(i * 0.2));
-		}
-		
-		Calculator1D calculator = Calculator1D.create1DCalculator(xValues, yValues, 0, 0.1);
-		calculator.calculateConstants1D();
-		
-		//
-		calculator.approximate1D(0.3);
+//		List<Double> xValues = new ArrayList<>();
+//		for (int i = 0; i < 12; i++) {
+//			xValues.add(i * 0.2);
+//		}
+//
+//		List<Double> yValues = new ArrayList<>();
+//		for (int i = 0; i < 12; i++) {
+//			yValues.add(Math.sin(i * 0.2));
+//		}
+//		
+//		Calculator1D calculator = new Calculator1D(xValues, yValues, "multiQuadro", 0.1);
+//		
+//		//
+//		calculator.approximate(0.3);
 		
 		// 2D case
 		List<Point> xyPoints = new ArrayList<>();
@@ -47,10 +46,10 @@ public class App {
 		ksietaPoints.add(new Point(new double[] {1.0, 3.0}));
 		ksietaPoints.add(new Point(new double[] {1.0, 2.0}));
 		
-		Calculator1D calculator = Calculator1D.create2DCalculator(xyPoints, ksietaPoints, 0, 0.1);
-		calculator.calculateConstants2D();
-		
+		Calculator2D calculator = new Calculator2D(xyPoints, ksietaPoints, "multiQuadro", 0.1);
 		//
-		calculator.approximate2D(new Point(new double[] {2.0, 2.0}));
+		Point resultOnXY = calculator.approximate(new Point(new double[] {2.0, 2.0}));
+		
+		System.out.println("Resulting point: " + resultOnXY);
 	}
 }

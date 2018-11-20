@@ -1,5 +1,7 @@
 package com.example.point;
 
+import java.util.Arrays;
+
 public class Point {
 	private int dimension;
 	private double[] coordinates;
@@ -20,4 +22,10 @@ public class Point {
 	public double[] getCoordinates() {
 		return coordinates;
 	}
+
+	@Override
+	public String toString() {
+		return "Point [coordinates=" + Arrays.toString(coordinates) + "]";
+	}
+	
 }

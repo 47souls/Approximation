@@ -1,18 +1,12 @@
 package com.example.calculator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.BiFunction;
 
 public abstract class GenericCalculator {
 
 	@SuppressWarnings("serial")
-	protected HashMap<String, BiFunction<Double, Double, Double>> radialFunctionsMap = new HashMap<String, BiFunction<Double, Double, Double>>() {{
-		put("multiQuadro", multiQuadroRadialFunction);
-		put("revertedMultiQuadro", revertedMultiQuadroRadialFunction);
-		put("revertedQuadro", revertedQuadroRadialFunction);
-		put("gauss", gaussRadialFunction);
-	}};
+	protected HashMap<String, BiFunction<Double, Double, Double>> radialFunctionsMap = new HashMap<>();
 
 	public BiFunction<Double, Double, Double> multiQuadroRadialFunction = (radius, e) -> Math.pow(1 + Math.pow(radius * e, 2), 0.5);
 	public BiFunction<Double, Double, Double> revertedMultiQuadroRadialFunction = (radius, e) -> 1.0 / multiQuadroRadialFunction.apply(radius, e);
@@ -25,9 +19,13 @@ public abstract class GenericCalculator {
 	public GenericCalculator(String functionName, double e) {
 		this.functionName = functionName;
 		this.e = e;
+		
+		radialFunctionsMap.put("multiQuadro", multiQuadroRadialFunction);
+		radialFunctionsMap.put("revertedMultiQuadro", revertedMultiQuadroRadialFunction);
+		radialFunctionsMap.put("revertedQuadro", revertedQuadroRadialFunction);
+		radialFunctionsMap.put("gauss", gaussRadialFunction);
 	}
 
-	// Getters/Setters
 	public String getFunctionName() {
 		return functionName;
 	}
@@ -43,12 +41,4 @@ public abstract class GenericCalculator {
 	public void setE(double e) {
 		this.e = e;
 	}
-
-	// General logic
-	public double radius(double begin, double end) {
-		return Math.abs(begin - end);
-	}
-	
-	protected abstract List<Double> calculateConstants();
-	
 }
