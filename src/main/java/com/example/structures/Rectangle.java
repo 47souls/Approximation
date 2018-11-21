@@ -1,5 +1,7 @@
 package com.example.structures;
 
+import java.util.Arrays;
+
 import com.example.point.Point;
 
 /**
@@ -7,17 +9,28 @@ import com.example.point.Point;
  * 
  * It has 4 points which are vertexes
  * 
+ * Constructor gets 2 points a and c which form Rectangle as b and d are
+ * calculated afterwards
+ * 
+ * In form
+ * 
+ * d-------c - - a-------b
+ * 
  */
 public class Rectangle {
 
 	private Point a;
 	private Point b;
+	private Point c;
+	private Point d;
 
-	private Net net;
+	private Point[][] netPoints;
 
-	public Rectangle(Point a, Point b) {
+	public Rectangle(Point a, Point c) {
 		this.a = a;
-		this.b = b;
+		this.c = c;
+
+		initAllVertexes(a, c);
 	}
 
 	public Point getA() {
@@ -36,12 +49,43 @@ public class Rectangle {
 		this.b = b;
 	}
 
-	public Net getNet() {
-		return net;
+	public Point getC() {
+		return c;
 	}
 
-	public void setNet(Net net) {
-		this.net = net;
+	public void setC(Point c) {
+		this.c = c;
 	}
 
+	public Point getD() {
+		return d;
+	}
+
+	public void setD(Point d) {
+		this.d = d;
+	}
+
+	public Point[][] getNetPoints() {
+		return netPoints;
+	}
+
+	public void setNetPoints(Point[][] netPoints) {
+		this.netPoints = netPoints;
+	}
+
+	private void initAllVertexes(Point a, Point c) {
+		double[] aCoordinates = a.getCoordinates();
+		double[] cCoordinates = c.getCoordinates();
+
+		this.b = new Point(new double[] { aCoordinates[1], cCoordinates[0] });
+		this.d = new Point(new double[] { aCoordinates[0], cCoordinates[1] });
+	}
+
+	@Override
+	public String toString() {
+		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + Arrays.toString(netPoints)
+				+ "]";
+	}
+	
+	
 }

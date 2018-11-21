@@ -8,6 +8,8 @@ import com.example.calculator.Calculator1D;
 import com.example.calculator.Calculator2D;
 import com.example.calculator.FunctionHelper;
 import com.example.point.Point;
+import com.example.structures.Rectangle;
+import com.example.structures.RectangleManipulator;
 
 public class App {
 	public static void main(String[] args) {
@@ -55,12 +57,9 @@ public class App {
 //		
 //		System.out.println("Resulting point: " + resultOnXY);
 		
-		System.out.print(FunctionHelper.getPointFunction.apply(new Point(new double[] {1.0, 1.0}), new Point(new double[] {2.0, 2.0})).apply(3.0));
-	
-		double h1 = 0.2;
-		Function<Double, Point> pointFunction = FunctionHelper.getPointFunction.apply(new Point(new double[] {1.0, 1.0}), new Point(new double[] {2.0, 2.0}));
+		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
+		RectangleManipulator.fillNet(rectangle, 0.2, 0.3);
 		
-		
-		
+		System.out.println(rectangle);
 	}
 }
