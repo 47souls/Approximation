@@ -5,7 +5,6 @@ import java.util.function.BiFunction;
 
 public abstract class GenericCalculator {
 
-	@SuppressWarnings("serial")
 	protected HashMap<String, BiFunction<Double, Double, Double>> radialFunctionsMap = new HashMap<>();
 
 	public BiFunction<Double, Double, Double> multiQuadroRadialFunction = (radius, e) -> Math.pow(1 + Math.pow(radius * e, 2), 0.5);

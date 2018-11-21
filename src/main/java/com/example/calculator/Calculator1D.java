@@ -43,8 +43,6 @@ public class Calculator1D extends GenericCalculator {
 	}
 	
 	public double[] calculateConstants() {
-		
-		/* Some pre-processing */
 		int counter = 0;
 		int numberOfLines = x.size();
 		double[][]  fi = new double[numberOfLines][numberOfLines];

@@ -60,9 +60,6 @@ public class Calculator2D extends GenericCalculator {
 			System.out.println();
 		}
 		
-		/* Need to solve 2 systems right there */
-		
-		/* 1. */
 		/* Algorithm go ahead */
 		while (counter < numberOfLines) {
 			double temp = fi[counter][counter];

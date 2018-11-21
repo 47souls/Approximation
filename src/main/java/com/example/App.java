@@ -2,8 +2,11 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
+import com.example.calculator.Calculator1D;
 import com.example.calculator.Calculator2D;
+import com.example.calculator.FunctionHelper;
 import com.example.point.Point;
 
 public class App {
@@ -26,30 +29,38 @@ public class App {
 //		calculator.approximate(0.3);
 		
 		// 2D case
-		List<Point> xyPoints = new ArrayList<>();
-		xyPoints.add(new Point(new double[] {1.0, 1.0}));
-		xyPoints.add(new Point(new double[] {2.0, 1.0}));
-		xyPoints.add(new Point(new double[] {3.0, 1.0}));
-		xyPoints.add(new Point(new double[] {3.0, 2.0}));
-		xyPoints.add(new Point(new double[] {3.0, 3.0}));
-		xyPoints.add(new Point(new double[] {2.0, 3.0}));
-		xyPoints.add(new Point(new double[] {1.0, 3.0}));
-		xyPoints.add(new Point(new double[] {1.0, 2.0}));
-
-		List<Point> ksietaPoints = new ArrayList<>();
-		ksietaPoints.add(new Point(new double[] {1.0, 1.0}));
-		ksietaPoints.add(new Point(new double[] {2.0, 1.0}));
-		ksietaPoints.add(new Point(new double[] {3.0, 1.0}));
-		ksietaPoints.add(new Point(new double[] {4.0, 1.0}));
-		ksietaPoints.add(new Point(new double[] {2.0, 3.0}));
-		ksietaPoints.add(new Point(new double[] {1.0, 4.0}));
-		ksietaPoints.add(new Point(new double[] {1.0, 3.0}));
-		ksietaPoints.add(new Point(new double[] {1.0, 2.0}));
+//		List<Point> xyPoints = new ArrayList<>();
+//		xyPoints.add(new Point(new double[] {1.0, 1.0}));
+//		xyPoints.add(new Point(new double[] {2.0, 1.0}));
+//		xyPoints.add(new Point(new double[] {3.0, 1.0}));
+//		xyPoints.add(new Point(new double[] {3.0, 2.0}));
+//		xyPoints.add(new Point(new double[] {3.0, 3.0}));
+//		xyPoints.add(new Point(new double[] {2.0, 3.0}));
+//		xyPoints.add(new Point(new double[] {1.0, 3.0}));
+//		xyPoints.add(new Point(new double[] {1.0, 2.0}));
+//
+//		List<Point> ksietaPoints = new ArrayList<>();
+//		ksietaPoints.add(new Point(new double[] {1.0, 1.0}));
+//		ksietaPoints.add(new Point(new double[] {2.0, 1.0}));
+//		ksietaPoints.add(new Point(new double[] {3.0, 1.0}));
+//		ksietaPoints.add(new Point(new double[] {4.0, 1.0}));
+//		ksietaPoints.add(new Point(new double[] {2.0, 3.0}));
+//		ksietaPoints.add(new Point(new double[] {1.0, 4.0}));
+//		ksietaPoints.add(new Point(new double[] {1.0, 3.0}));
+//		ksietaPoints.add(new Point(new double[] {1.0, 2.0}));
+//		
+//		Calculator2D calculator = new Calculator2D(xyPoints, ksietaPoints, "multiQuadro", 0.1);
+//		//
+//		Point resultOnXY = calculator.approximate(new Point(new double[] {2.0, 2.0}));
+//		
+//		System.out.println("Resulting point: " + resultOnXY);
 		
-		Calculator2D calculator = new Calculator2D(xyPoints, ksietaPoints, "multiQuadro", 0.1);
-		//
-		Point resultOnXY = calculator.approximate(new Point(new double[] {2.0, 2.0}));
+		System.out.print(FunctionHelper.getPointFunction.apply(new Point(new double[] {1.0, 1.0}), new Point(new double[] {2.0, 2.0})).apply(3.0));
+	
+		double h1 = 0.2;
+		Function<Double, Point> pointFunction = FunctionHelper.getPointFunction.apply(new Point(new double[] {1.0, 1.0}), new Point(new double[] {2.0, 2.0}));
 		
-		System.out.println("Resulting point: " + resultOnXY);
+		
+		
 	}
 }
