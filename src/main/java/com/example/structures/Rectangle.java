@@ -77,7 +77,7 @@ public class Rectangle {
 		double[] aCoordinates = a.getCoordinates();
 		double[] cCoordinates = c.getCoordinates();
 
-		this.b = new Point(new double[] { aCoordinates[1], cCoordinates[0] });
+		this.b = new Point(new double[] { cCoordinates[0], aCoordinates[1] });
 		this.d = new Point(new double[] { aCoordinates[0], cCoordinates[1] });
 	}
 

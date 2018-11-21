@@ -34,7 +34,7 @@ public class FunctionHelper {
 		double[] point1Coordinates = p1.getCoordinates();
 		double[] point2Coordinates = p2.getCoordinates();
 		
-		return Math.sqrt(Math.pow(point1Coordinates[0] - point2Coordinates[0] , 2) + Math.pow(point1Coordinates[0] - point2Coordinates[0], 2));
+		return Math.sqrt(Math.pow(point1Coordinates[0] - point2Coordinates[0], 2) + Math.pow(point1Coordinates[1] - point2Coordinates[1], 2));
 	};
 	
 }
