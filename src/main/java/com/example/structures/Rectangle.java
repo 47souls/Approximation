@@ -14,7 +14,9 @@ import com.example.point.Point;
  * 
  * In form
  * 
- * d-------c - - a-------b
+ * d-------c 
+ * - 	   - 
+ * a-------b
  * 
  */
 public class Rectangle {
