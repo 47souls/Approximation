@@ -116,7 +116,10 @@ public class Calculator2D extends GenericCalculator {
 	}
 	
 	public Point approximate(Point point) {		
-		calculateXYConstants();
+		
+		if (xConstants == null || yConstants == null) {
+			calculateXYConstants();
+		}
 		
 		double xCoordinate = approximateCoordinate(point, xConstants);
 		double yCoordinate = approximateCoordinate(point, yConstants);

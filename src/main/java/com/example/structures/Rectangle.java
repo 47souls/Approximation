@@ -1,7 +1,5 @@
 package com.example.structures;
 
-import java.util.Arrays;
-
 import com.example.point.Point;
 
 /**
@@ -82,10 +80,26 @@ public class Rectangle {
 		this.b = new Point(new double[] { cCoordinates[0], aCoordinates[1] });
 		this.d = new Point(new double[] { aCoordinates[0], cCoordinates[1] });
 	}
+	
+	private String printNetPoints(Point[][] netPoints) {
+		String result = "";
+		int rows = netPoints.length;
+		int columns = netPoints[0].length;
+		
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				System.out.println(netPoints[i][j]);
+			}
+			
+			System.out.println();
+		}
+		
+		return result;
+	}
 
 	@Override
 	public String toString() {
-		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + Arrays.toString(netPoints)
+		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + printNetPoints(netPoints)
 				+ "]";
 	}
 	

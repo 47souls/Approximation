@@ -22,6 +22,7 @@ public class RectangleManipulator {
 		
 		Point[][] netPoints = new Point[xMarksNumber][yMarksNumber];
 		
+		// TODO this is not working fine
 		for (int i = 0; i < xMarksNumber; i++) {
 			for (int j = 0; j < yMarksNumber; j++) {
 				netPoints[i][j] = new Point(new double[] {
