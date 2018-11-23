@@ -10,7 +10,6 @@ public class Calculator2D extends GenericCalculator {
 	private List<Point> xyPoints;
 	private List<Point> ksietaPoints;
 	
-	
 	private double[] xConstants;
 	private double[] yConstants;
 

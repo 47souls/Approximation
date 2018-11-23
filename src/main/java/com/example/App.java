@@ -1,15 +1,9 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
-import com.example.calculator.Calculator1D;
-import com.example.calculator.Calculator2D;
-import com.example.calculator.FunctionHelper;
 import com.example.point.Point;
 import com.example.structures.Rectangle;
 import com.example.structures.RectangleManipulator;
+import com.example.structures.Trapezium;
 
 public class App {
 	public static void main(String[] args) {
@@ -57,9 +51,13 @@ public class App {
 //		
 //		System.out.println("Resulting point: " + resultOnXY);
 		
-		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
-		RectangleManipulator.fillNet(rectangle, 0.2, 0.3);
+//		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
+//		RectangleManipulator.fillNet(rectangle, 0.5, 0.5);
 		
-		System.out.println(rectangle);
+		// 
+		
+		Trapezium trapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}));
+		
+		System.out.println(trapezium);
 	}
 }

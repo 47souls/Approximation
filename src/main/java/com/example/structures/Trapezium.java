@@ -7,25 +7,26 @@ import com.example.point.Point;
  * 
  * It has 4 points which are vertexes
  * 
- * Constructor gets 2 points a and c which form Rectangle as b and d are
+ * Constructor gets 3 points a,b and c which form Trapezium as d is
  * calculated afterwards
  * 
  * In form
  * 
- * d-------c 
+ * 	 d---c 
  * - 	   - 
  * a-------b
  * 
  */
-public class Rectangle extends ConvexPolygon {
+public class Trapezium extends ConvexPolygon {
 
 	private Point a;
 	private Point b;
 	private Point c;
 	private Point d;
 
-	public Rectangle(Point a, Point c) {
+	public Trapezium(Point a, Point b, Point c) {
 		this.a = a;
+		this.b = b;
 		this.c = c;
 
 		initAllVertexes();
@@ -66,15 +67,16 @@ public class Rectangle extends ConvexPolygon {
 	@Override
 	protected void initAllVertexes() {
 		double[] aCoordinates = a.getCoordinates();
+		double[] bCoordinates = b.getCoordinates();
 		double[] cCoordinates = c.getCoordinates();
 
-		this.b = new Point(new double[] { cCoordinates[0], aCoordinates[1] });
-		this.d = new Point(new double[] { aCoordinates[0], cCoordinates[1] });
+		this.d = new Point(new double[] { aCoordinates[0] + bCoordinates[0] - cCoordinates[0], cCoordinates[1] });
 	}
 
 	@Override
 	public String toString() {
-		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + "\n" + printNetPoints(netPoints)
-				+ "]";
+		return "Trapezium [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + "\n"
+				+ printNetPoints(netPoints) + "]";
 	}
+
 }
