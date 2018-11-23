@@ -20,14 +20,13 @@ public class RectangleManipulator {
 		double[] aCoordinates = a.getCoordinates();
 		double[] cCoordinates = c.getCoordinates();
 		
-		Point[][] netPoints = new Point[xMarksNumber][yMarksNumber];
-		
-		// TODO this is not working fine
-		for (int i = 0; i < xMarksNumber; i++) {
-			for (int j = 0; j < yMarksNumber; j++) {
+		Point[][] netPoints = new Point[yMarksNumber - 1][xMarksNumber - 1];
+
+		for (int i = 0; i < yMarksNumber - 1; i++) {
+			for (int j = 0; j < xMarksNumber - 1; j++) {
 				netPoints[i][j] = new Point(new double[] {
-					aCoordinates[0] + xAxisStep * (i + 1),
-					cCoordinates[1] - yAxisStep * (j + 1)
+					aCoordinates[0] + xAxisStep * (j + 1),
+					cCoordinates[1] - yAxisStep * (i + 1)
 				});
 			}
 		}

@@ -1,6 +1,6 @@
 package com.example.point;
 
-import java.util.Arrays;
+import java.text.DecimalFormat;
 
 public class Point {
 	private int dimension;
@@ -25,7 +25,18 @@ public class Point {
 
 	@Override
 	public String toString() {
-		return Arrays.toString(coordinates);
+		StringBuilder value = new StringBuilder();
+		DecimalFormat decimal2Points = new DecimalFormat(".##");
+		value.append("[ ");
+		for (int i = 0; i < coordinates.length - 1; i++) {
+			value.append(decimal2Points.format(coordinates[i])).append(" ; ");
+		}
+		
+		value.append(decimal2Points.format(coordinates[coordinates.length - 1]));
+		
+		value.append(" ]");
+
+		return value.toString();
 	}
-	
+
 }

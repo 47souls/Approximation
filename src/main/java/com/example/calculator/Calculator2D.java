@@ -102,7 +102,7 @@ public class Calculator2D extends GenericCalculator {
 		for (int i = 0; i < constants.length; i++) {
 			System.out.println("Constant(" + i + "): " + constants[i]);
 			
-			// Determining distance from Point(x,y) to approximate to each defined point (ksi, eta)
+			// Determining distance from Point(ksi*, eta*) to approximate to each defined point (ksi, eta)
 			double radius = radius(pointToApproximate, ksietaPoints.get(i));
 			
 			BiFunction<Double, Double, Double> radialFunction = radialFunctionsMap.get(functionName);

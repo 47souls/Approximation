@@ -82,24 +82,24 @@ public class Rectangle {
 	}
 	
 	private String printNetPoints(Point[][] netPoints) {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		int rows = netPoints.length;
 		int columns = netPoints[0].length;
 		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				System.out.println(netPoints[i][j]);
+				result.append(netPoints[i][j]).append(" ");
 			}
 			
-			System.out.println();
+			result.append("\n");
 		}
 		
-		return result;
+		return result.toString();
 	}
 
 	@Override
 	public String toString() {
-		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + printNetPoints(netPoints)
+		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + "\n" + printNetPoints(netPoints)
 				+ "]";
 	}
 	
