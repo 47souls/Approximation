@@ -3,6 +3,7 @@ package com.example;
 import com.example.point.Point;
 import com.example.structures.Rectangle;
 import com.example.structures.RectangleManipulator;
+import com.example.structures.ReflectionManipulator;
 import com.example.structures.Trapezium;
 
 public class App {
@@ -51,12 +52,16 @@ public class App {
 //		
 //		System.out.println("Resulting point: " + resultOnXY);
 		
-//		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
-//		RectangleManipulator.fillNet(rectangle, 0.5, 0.5);
+		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
+		RectangleManipulator.fillNet(rectangle, 0.5, 0.5);
 		
 		// 
 		
 		Trapezium trapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}));
+		
+		
+		ReflectionManipulator.reflectNet(trapezium, rectangle);
+		
 		
 		System.out.println(trapezium);
 	}

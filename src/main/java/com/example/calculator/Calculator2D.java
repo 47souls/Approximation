@@ -1,19 +1,18 @@
 package com.example.calculator;
 
-import java.util.List;
 import java.util.function.BiFunction;
 
 import com.example.point.Point;
 
 public class Calculator2D extends GenericCalculator {
 
-	private List<Point> xyPoints;
-	private List<Point> ksietaPoints;
+	private Point[] xyPoints;
+	private Point[] ksietaPoints;
 	
 	private double[] xConstants;
 	private double[] yConstants;
 
-	public Calculator2D(List<Point> xyPoints, List<Point> ksietaPoints, String functionName, double e) {
+	public Calculator2D(Point[] xyPoints, Point[] ksietaPoints, String functionName, double e) {
 		super(functionName, e);
 
 		this.xyPoints = xyPoints;
@@ -28,12 +27,12 @@ public class Calculator2D extends GenericCalculator {
 	}
 
 	private void calculateXYConstants() {
-		int size = xyPoints.size();
+		int size = xyPoints.length;
 		double[] xCoordinates = new double[size];
 		double[] yCoordinates = new double[size];
 		
-		for (int i = 0; i < xyPoints.size(); i++) {
-			double[] coordinates = xyPoints.get(i).getCoordinates();
+		for (int i = 0; i < size; i++) {
+			double[] coordinates = xyPoints[i].getCoordinates();
 			xCoordinates[i] = coordinates[0];
 			yCoordinates[i] = coordinates[1];		
 		}
@@ -44,7 +43,7 @@ public class Calculator2D extends GenericCalculator {
 	
 	protected double[] calculateConstants(double[] coordinatesToOperate) {
 		int counter = 0;
-		int numberOfLines = xyPoints.size();
+		int numberOfLines = xyPoints.length;
 		double[][] fi = new double[numberOfLines][numberOfLines];
 		double[] constants = new double[numberOfLines];
 		
@@ -53,7 +52,7 @@ public class Calculator2D extends GenericCalculator {
 		
 		for (int i = 0; i < numberOfLines; i++) {
 			for (int j = 0; j < numberOfLines; j++) {
-				fi[i][j] = radialFunction.apply(radius(ksietaPoints.get(i), ksietaPoints.get(j)), e);
+				fi[i][j] = radialFunction.apply(radius(ksietaPoints[i], ksietaPoints[j]), e);
 				System.out.print(fi[i][j] + " ");
 			}
 			System.out.println();
@@ -102,7 +101,7 @@ public class Calculator2D extends GenericCalculator {
 			System.out.println("Constant(" + i + "): " + constants[i]);
 			
 			// Determining distance from Point(ksi*, eta*) to approximate to each defined point (ksi, eta)
-			double radius = radius(pointToApproximate, ksietaPoints.get(i));
+			double radius = radius(pointToApproximate, ksietaPoints[i]);
 			
 			BiFunction<Double, Double, Double> radialFunction = radialFunctionsMap.get(functionName);
 			fi = radialFunction.apply(radius, e);

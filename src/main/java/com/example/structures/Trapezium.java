@@ -30,6 +30,8 @@ public class Trapezium extends ConvexPolygon {
 		this.c = c;
 
 		initAllVertexes();
+		
+		setGivenPoints(new Point[] {a, b, c, d});
 	}
 
 	public Point getA() {

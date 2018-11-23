@@ -29,6 +29,8 @@ public class Rectangle extends ConvexPolygon {
 		this.c = c;
 
 		initAllVertexes();
+		
+		setGivenPoints(new Point[] {a, b, c, d});
 	}
 
 	public Point getA() {
