@@ -1,4 +1,4 @@
-package com.example.structures;
+package com.example.figures;
 
 import com.example.point.Point;
 

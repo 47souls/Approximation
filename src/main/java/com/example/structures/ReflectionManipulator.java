@@ -9,6 +9,7 @@ import java.util.Random;
 import com.example.calculator.Calculator2D;
 import com.example.calculator.FunctionHelper;
 import com.example.calculator.GenericCalculator;
+import com.example.figures.ConvexPolygon;
 import com.example.point.Point;
 
 /**
@@ -92,7 +93,9 @@ public class ReflectionManipulator {
 				Point point2 = lowerArray[point2Index];
 						
 				// Generate point between them using line equation
-				Point betweenThem = FunctionHelper.getPointFunction.apply(point1, point2).apply((point1.getCoordinates()[0] + point2.getCoordinates()[0]) / 2);
+				double middleX = (point1.getCoordinates()[0] + point2.getCoordinates()[0]) / 2;
+				Point betweenThem = FunctionHelper.getPointFunction.apply(point1, point2).apply(middleX);
+				
 				adjustedGivenPointsForLowerArray.add(betweenThem);
 				
 				difference--;

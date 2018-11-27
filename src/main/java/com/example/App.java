@@ -1,10 +1,10 @@
 package com.example;
 
+import com.example.figures.Rectangle;
+import com.example.figures.Trapezium;
 import com.example.point.Point;
-import com.example.structures.Rectangle;
 import com.example.structures.RectangleManipulator;
 import com.example.structures.ReflectionManipulator;
-import com.example.structures.Trapezium;
 
 public class App {
 	public static void main(String[] args) {

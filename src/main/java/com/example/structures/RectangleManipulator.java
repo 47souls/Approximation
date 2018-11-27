@@ -1,6 +1,7 @@
 package com.example.structures;
 
 import com.example.calculator.FunctionHelper;
+import com.example.figures.Rectangle;
 import com.example.point.Point;
 
 public class RectangleManipulator {
