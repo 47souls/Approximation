@@ -60,24 +60,16 @@ public class App {
 		
 		////////////////////////
 		Rectangle rectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
-//		RectangleManipulator.fillNet(rectangle, 0.5, 0.5);
-//		
-// 
-//		
+		RectangleManipulator.fillNet(rectangle, 0.5, 0.5);
+
 		Trapezium trapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}));
-//		
-//		
-//		ReflectionManipulator.reflectNet(trapezium, rectangle);
-//		
-//		
-//		System.out.println(rectangle);
-//		System.out.println(trapezium);
+		ReflectionManipulator.reflectNet(trapezium, rectangle);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				new GraphFrame("Figure approximation", rectangle, "X", "Y");
+				new GraphFrame("Figure approximation", rectangle, "ξ", "η");
 			}
 		});
 		
@@ -85,7 +77,7 @@ public class App {
 			
 			@Override
 			public void run() {
-				new GraphFrame("Figure approximation", trapezium, "ξ", "η");
+				new GraphFrame("Figure approximation", trapezium, "X", "Y");
 			}
 		});
 	}

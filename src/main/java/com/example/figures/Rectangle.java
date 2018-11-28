@@ -30,7 +30,7 @@ public class Rectangle extends ConvexPolygon {
 
 		initAllVertexes();
 		
-		setGivenPoints(new Point[] {a, b, c, d, a});
+		setGivenPoints(new Point[] {a, b, c, d });
 	}
 
 	public Point getA() {

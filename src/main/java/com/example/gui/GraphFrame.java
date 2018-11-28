@@ -1,6 +1,7 @@
 package com.example.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
@@ -31,6 +32,8 @@ public class GraphFrame extends JFrame {
 	}
 	
 	private JPanel initGraphPanel(ConvexPolygon figure, String bottomAxisName, String topAxisName) {
+		
+		// Adding figure borders to the plot
 		Point[] givenPoints = figure.getGivenPoints();
 		int length = givenPoints.length;
 		double[] xCoordinates = new double[length];
@@ -42,8 +45,45 @@ public class GraphFrame extends JFrame {
 		}
 		
 		Chart chart = new ChartBuilder().chartType(ChartType.Line).width(600).height(400).title("Line Chart").xAxisTitle(bottomAxisName).yAxisTitle(topAxisName).build();
+		chart.getStyleManager();
 		chart.addSeries(figure.getClass().getSimpleName(), xCoordinates, yCoordinates);
 
+		// Adding figure net points to the plot
+		Point[][] netPoints = figure.getNetPoints();
+		int rows = netPoints.length;
+		int columns = netPoints[0].length;
+
+		// drawing horizontal lines on net
+		for (int i = 0; i < rows; i++) {
+			double[] xCoordinatesHorizontalNet = new double[columns];
+			double[] yCoordinatesHorizontalNet = new double[columns];
+			
+			for (int j = 0; j < columns; j++) {
+				xCoordinatesHorizontalNet[j] = netPoints[i][j].getCoordinates()[0];
+				yCoordinatesHorizontalNet[j] = netPoints[i][j].getCoordinates()[1];
+			}
+			
+			// TODO:
+			// 1) How to add series of same color???
+			// 2) How to remove series name from right part of screen
+			chart.addSeries(i + " ", xCoordinatesHorizontalNet, yCoordinatesHorizontalNet);
+		}
+		
+		// drawing vertical lines on net
+		for (int j = 0; j < columns; j++) {
+			double[] xCoordinatesVerticalNet = new double[rows];
+			double[] yCoordinatesVerticalNet = new double[rows];
+			
+			for (int i = 0; i < rows; i++) {
+				xCoordinatesVerticalNet[i] = netPoints[i][j].getCoordinates()[0];
+				yCoordinatesVerticalNet[i] = netPoints[i][j].getCoordinates()[1];
+			}
+			
+			// TODO:
+			// 1) How to add series of same color???
+			// 2) How to remove series name from right part of screen
+			chart.addSeries(System.currentTimeMillis() + j + " ", xCoordinatesVerticalNet, yCoordinatesVerticalNet);
+		}
 
 		return new XChartPanel(chart);
 	}
