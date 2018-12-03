@@ -20,7 +20,7 @@ import com.example.point.Point;
  * */
 public class FunctionHelper {
 	
-	public static BiFunction<Point, Point, Function<Double, Point>> getPointFunction = (p1, p2) -> (x -> {
+	public static BiFunction<Point, Point, Function<Double, Point>> getPointByXCoordinateFunction = (p1, p2) -> (x -> {
 		double[] point1Coordinates = p1.getCoordinates();
 		double[] point2Coordinates = p2.getCoordinates();
 		
@@ -28,6 +28,17 @@ public class FunctionHelper {
 		
 		return new Point(new double[] {x, y});
 	});
+	
+	public static BiFunction<Point, Point, Function<Double, Point>> getPointByYCoordinateFunction = (p1, p2) -> (y -> {
+		double[] point1Coordinates = p1.getCoordinates();
+		double[] point2Coordinates = p2.getCoordinates();
+
+		double x = (y - point1Coordinates[1]) / (point2Coordinates[1] - point1Coordinates[1]) * (point2Coordinates[0] - point1Coordinates[0]) + point1Coordinates[0];
+		
+		return new Point(new double[] {x, y});
+	});
+	
+	
 	
 	
 	public static BiFunction<Point, Point, Double> twoPointsDistanceFunction = (p1, p2) -> {

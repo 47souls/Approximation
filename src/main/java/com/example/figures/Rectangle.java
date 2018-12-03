@@ -1,5 +1,7 @@
 package com.example.figures;
 
+import java.util.Arrays;
+
 import com.example.point.Point;
 
 /**
@@ -31,6 +33,12 @@ public class Rectangle extends ConvexPolygon {
 		initAllVertexes();
 		
 		setEdgePoints(new Point[] {a, b, c, d });
+	}
+	
+	public Rectangle(Point a, Point c, double xAxisStep, double yAxisStep) {
+		this(a, c);
+		
+		setEdgePointsByStep(xAxisStep, yAxisStep);
 	}
 
 	public Point getA() {
@@ -64,6 +72,55 @@ public class Rectangle extends ConvexPolygon {
 	public void setD(Point d) {
 		this.d = d;
 	}
+	
+	private void setEdgePointsByStep(double xAxisStep, double yAxisStep) {
+		// That sucks I know. Will think about it later on
+		double[] aCoordinates = a.getCoordinates();
+		double[] bCoordinates = b.getCoordinates();
+		double[] cCoordinates = c.getCoordinates();
+		double[] dCoordinates = d.getCoordinates();
+		
+		double xDistance = bCoordinates[0] - aCoordinates[0];
+		int xMarksNumber = (int) (xDistance / xAxisStep);
+		
+		double yDistance = cCoordinates[1] - bCoordinates[1];
+		int yMarksNumber = (int) (yDistance / yAxisStep);
+		
+		int numberOfPoints = 2 * xMarksNumber + 2 * yMarksNumber;
+		Point[] edgePoints = new Point[numberOfPoints];
+		
+		int edgePointIndex = 0;
+		// Edge points between a and b
+		for (int i = 0; i < xMarksNumber; i++, edgePointIndex++) {
+			edgePoints[edgePointIndex] = new Point(new double[] {
+					aCoordinates[0] + xAxisStep * i,
+					aCoordinates[1]
+			});
+		}
+		// Edge points between b and c
+		for (int i = 0; i < yMarksNumber; i++, edgePointIndex++) {
+			edgePoints[edgePointIndex] = new Point(new double[] {
+					bCoordinates[0],
+					bCoordinates[1] + yAxisStep * i
+			});
+		}
+		// Edge points between c and d
+		for (int i = 0; i < xMarksNumber; i++, edgePointIndex++) {
+			edgePoints[edgePointIndex] = new Point(new double[] {
+					cCoordinates[0] - xAxisStep * i,
+					cCoordinates[1]
+			});
+		}
+		// Edge points between d and a
+		for (int i = 0; i < yMarksNumber; i++, edgePointIndex++) {
+			edgePoints[edgePointIndex] = new Point(new double[] {
+					dCoordinates[0],
+					dCoordinates[1] - yAxisStep * i
+			});
+		}
+		
+		setEdgePoints(edgePoints);
+	}
 
 	@Override
 	protected void initAllVertexes() {
@@ -77,6 +134,6 @@ public class Rectangle extends ConvexPolygon {
 	@Override
 	public String toString() {
 		return "Rectangle [a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", netPoints=" + "\n" + printNetPoints(netPoints)
-				+ "]";
+				+ "," + "edgePoints=" + "\n" + Arrays.toString(edgePoints) + "]";
 	}
 }

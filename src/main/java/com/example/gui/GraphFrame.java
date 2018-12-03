@@ -34,14 +34,14 @@ public class GraphFrame extends JFrame {
 	private JPanel initGraphPanel(ConvexPolygon figure, String bottomAxisName, String topAxisName) {
 
 		// Adding figure borders to the plot
-		Point[] givenPoints = figure.getEdgePoints();
-		int length = givenPoints.length;
+		Point[] edgePoints = figure.getEdgePoints();
+		int length = edgePoints.length;
 		double[] xCoordinates = new double[length];
 		double[] yCoordinates = new double[length];
 
 		for (int i = 0; i < length; i++) {
-			xCoordinates[i] = givenPoints[i].getCoordinates()[0];
-			yCoordinates[i] = givenPoints[i].getCoordinates()[1];
+			xCoordinates[i] = edgePoints[i].getCoordinates()[0];
+			yCoordinates[i] = edgePoints[i].getCoordinates()[1];
 		}
 
 		Chart chart = new ChartBuilder()

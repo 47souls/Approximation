@@ -1,4 +1,4 @@
-package com.example.structures;
+package com.example.helper;
 
 import com.example.calculator.Calculator2D;
 import com.example.calculator.GenericCalculator;
@@ -13,7 +13,7 @@ import com.example.point.Point;
  * 
  * 
  */
-public class ReflectionManipulator {
+public class ReflectionHelper {
 
 	public static void reflectNet(ConvexPolygon xyFigure, ConvexPolygon ksiEtaFigure) {
 

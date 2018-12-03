@@ -1,10 +1,10 @@
-package com.example.structures;
+package com.example.helper;
 
 import com.example.calculator.FunctionHelper;
 import com.example.figures.Rectangle;
 import com.example.point.Point;
 
-public class RectangleManipulator {
+public class RectangleHelper {
 	
 	public static void fillNet(Rectangle rectangle, double xAxisStep, double yAxisStep) {
 		Point a = rectangle.getA();
