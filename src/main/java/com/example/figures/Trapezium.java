@@ -31,7 +31,7 @@ public class Trapezium extends ConvexPolygon {
 
 		initAllVertexes();
 		
-		setGivenPoints(new Point[] {a, b, c, d});
+		setEdgePoints(new Point[] {a, b, c, d});
 	}
 
 	public Point getA() {

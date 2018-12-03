@@ -2,6 +2,7 @@ package com.example;
 
 import javax.swing.SwingUtilities;
 
+import com.example.calculator.Calculator2D;
 import com.example.figures.Rectangle;
 import com.example.figures.Trapezium;
 import com.example.gui.GraphFrame;
@@ -69,16 +70,30 @@ public class App {
 			
 			@Override
 			public void run() {
-				new GraphFrame("Figure approximation", rectangle, "ξ", "η");
+				new GraphFrame("Figure approximation", trapezium, "X", "Y");
 			}
 		});
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				new GraphFrame("Figure approximation", trapezium, "X", "Y");
+				new GraphFrame("Figure approximation", rectangle, "ξ", "η");
 			}
 		});
+		
+		// Need to get both edge and net points from both of figures and build new reflection
+		/* 
+		 * so
+		 * TODO:
+		 * 
+		 * 1) Still need to fill edge points for each figure using steps
+		 * 2) Keep net points distinct and not include edge points
+		 * 3) Then have array of all points. How it should include all points?
+		 * 
+		 * 
+		 * */
+		
+		//Calculator2D reversedCalculator = new Calculator2D(xyPoints, ksietaPoints, functionName, e)
 	}
 }

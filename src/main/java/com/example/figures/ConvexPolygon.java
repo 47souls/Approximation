@@ -3,23 +3,26 @@ package com.example.figures;
 import com.example.point.Point;
 
 public abstract class ConvexPolygon {
-	
-	protected Point[] givenPoints; 
+
+	protected Point[] edgePoints;
 	protected Point[][] netPoints;
-	
-	public Point[] getGivenPoints() {
-		return givenPoints;
+
+	public Point[] getEdgePoints() {
+		return edgePoints;
 	}
-	public void setGivenPoints(Point[] givenPoints) {
-		this.givenPoints = givenPoints;
+
+	public void setEdgePoints(Point[] edgePoints) {
+		this.edgePoints = edgePoints;
 	}
+
 	public Point[][] getNetPoints() {
 		return netPoints;
 	}
+
 	public void setNetPoints(Point[][] netPoints) {
 		this.netPoints = netPoints;
 	}
-	
+
 	protected String printNetPoints(Point[][] netPoints) {
 		if (netPoints != null && netPoints.length != 0) {
 			StringBuilder result = new StringBuilder();
@@ -40,7 +43,7 @@ public abstract class ConvexPolygon {
 			return "";
 		}
 	}
-	
+
 	protected abstract void initAllVertexes();
-	
+
 }

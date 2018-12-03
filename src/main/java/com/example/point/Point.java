@@ -1,5 +1,7 @@
 package com.example.point;
 
+import java.util.Arrays;
+
 public class Point {
 	private int dimension;
 	private double[] coordinates;
@@ -37,4 +39,28 @@ public class Point {
 		return value.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(coordinates);
+		result = prime * result + dimension;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Point other = (Point) obj;
+		if (!Arrays.equals(coordinates, other.coordinates))
+			return false;
+		if (dimension != other.dimension)
+			return false;
+		return true;
+	}
 }

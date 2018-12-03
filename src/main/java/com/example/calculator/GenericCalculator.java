@@ -12,10 +12,10 @@ public abstract class GenericCalculator {
 	public BiFunction<Double, Double, Double> revertedQuadroRadialFunction = (radius, e) -> 1.0 / Math.pow(multiQuadroRadialFunction.apply(radius, e), 0.5);
 	public BiFunction<Double, Double, Double> gaussRadialFunction = (radius, e) -> Math.exp(-Math.pow(radius * e, 2.0));
 	
-	public static final String MULTI_QUADRO = "multiQuadro";
-	public static final String REVERTED_MULTI_QUADRO = "revertedMultiQuadro";
-	public static final String REVERTED_QUADRO = "revertedQuadro";
-	public static final String GAUSS = "gauss";
+	public static final String MULTI_QUADRO_FUNCTION_NAME = "multiQuadro";
+	public static final String REVERTED_MULTI_QUADRO_FUNCTION_NAME = "revertedMultiQuadro";
+	public static final String REVERTED_QUADRO_FUNCTION_NAME = "revertedQuadro";
+	public static final String GAUSS_NAME_FUNCTION = "gauss";
 	
 	protected String functionName;
 	protected double e;
@@ -24,10 +24,10 @@ public abstract class GenericCalculator {
 		this.functionName = functionName;
 		this.e = e;
 		
-		radialFunctionsMap.put(MULTI_QUADRO, multiQuadroRadialFunction);
-		radialFunctionsMap.put(REVERTED_MULTI_QUADRO, revertedMultiQuadroRadialFunction);
-		radialFunctionsMap.put(REVERTED_QUADRO, revertedQuadroRadialFunction);
-		radialFunctionsMap.put(GAUSS, gaussRadialFunction);
+		radialFunctionsMap.put(MULTI_QUADRO_FUNCTION_NAME, multiQuadroRadialFunction);
+		radialFunctionsMap.put(REVERTED_MULTI_QUADRO_FUNCTION_NAME, revertedMultiQuadroRadialFunction);
+		radialFunctionsMap.put(REVERTED_QUADRO_FUNCTION_NAME, revertedQuadroRadialFunction);
+		radialFunctionsMap.put(GAUSS_NAME_FUNCTION, gaussRadialFunction);
 	}
 
 	public String getFunctionName() {

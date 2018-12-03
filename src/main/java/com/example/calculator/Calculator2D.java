@@ -26,7 +26,7 @@ public class Calculator2D extends GenericCalculator {
 		return Math.sqrt(Math.pow(beginCoordinates[0] - endCoordinates[0], 2) + Math.pow(beginCoordinates[1] - endCoordinates[1], 2));
 	}
 
-	private void calculateXYConstants() {
+	public void calculateXYConstants() {
 		int size = xyPoints.length;
 		double[] xCoordinates = new double[size];
 		double[] yCoordinates = new double[size];

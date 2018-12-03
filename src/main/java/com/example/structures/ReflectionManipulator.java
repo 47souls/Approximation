@@ -25,10 +25,10 @@ public class ReflectionManipulator {
 
 		// Here we are getting point and should check if their length is same
 		// so that each set of 2 figures has same amount of points
-		Point[] xyPoints = xyFigure.getGivenPoints();
-		Point[] ksietaPoints = ksiEtaFigure.getGivenPoints();
+		Point[] xyPoints = xyFigure.getEdgePoints();
+		Point[] ksietaPoints = ksiEtaFigure.getEdgePoints();
 
-		String functionName = GenericCalculator.MULTI_QUADRO;
+		String functionName = GenericCalculator.MULTI_QUADRO_FUNCTION_NAME;
 		double e = 0.1;
 
 		Calculator2D calculator2d = new Calculator2D(xyPoints, ksietaPoints, functionName, e);
