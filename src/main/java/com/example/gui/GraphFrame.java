@@ -33,17 +33,20 @@ public class GraphFrame extends JFrame {
 
 	private JPanel initGraphPanel(ConvexPolygon figure, String bottomAxisName, String topAxisName) {
 
-		// Adding figure borders to the plot
+		// Adding figure edge points to the plot
 		Point[] edgePoints = figure.getEdgePoints();
 		int length = edgePoints.length;
-		double[] xCoordinates = new double[length];
-		double[] yCoordinates = new double[length];
+		double[] xCoordinates = new double[length + 1];
+		double[] yCoordinates = new double[length + 1];
 
 		for (int i = 0; i < length; i++) {
 			xCoordinates[i] = edgePoints[i].getCoordinates()[0];
 			yCoordinates[i] = edgePoints[i].getCoordinates()[1];
 		}
-
+		
+		xCoordinates[length] = edgePoints[0].getCoordinates()[0];
+		yCoordinates[length] = edgePoints[0].getCoordinates()[1];
+		
 		Chart chart = new ChartBuilder()
 				.chartType(ChartType.Line)
 				.width(600)

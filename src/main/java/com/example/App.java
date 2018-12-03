@@ -59,36 +59,31 @@ public class App {
 //		
 //		System.out.println("Resulting point: " + resultOnXY);
 		
-//		// 1. Creating figures
-//		Rectangle ksiEtaRectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}));
-//		Trapezium xyTrapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}));
-//		// 2. Calculating edge points using steps, for circle that should be crazy!
-//		
-//		// 3. Filling net
-//		RectangleHelper.fillNet(ksiEtaRectangle, 0.5, 0.5);
-//		// 4. Reflecting net
-//		ReflectionHelper.reflectNet(xyTrapezium, ksiEtaRectangle);
-//		
-//		SwingUtilities.invokeLater(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				new GraphFrame("Figure approximation", xyTrapezium, "X", "Y");
-//			}
-//		});
-//
-//		SwingUtilities.invokeLater(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				new GraphFrame("Figure approximation", ksiEtaRectangle, "ξ", "η");
-//			}
-//		});
+		// 1. Creating figures
+		Rectangle ksiEtaRectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}), 0.5, 0.5);
+		Trapezium xyTrapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}), 6, 6);
+		// 2. Calculating edge points using steps, for circle that should be crazy!
 		
-		Rectangle ksiEtaRectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}), 1.0, 1.0);
-		Trapezium xyTrapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}), 3, 3);
-		System.out.println(ksiEtaRectangle);
-		System.out.println(xyTrapezium);
+		// 3. Filling net
+		RectangleHelper.fillNet(ksiEtaRectangle, 0.5, 0.5);
+		// 4. Reflecting net
+		ReflectionHelper.reflectNet(xyTrapezium, ksiEtaRectangle);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new GraphFrame("Figure approximation", xyTrapezium, "X", "Y");
+			}
+		});
+
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new GraphFrame("Figure approximation", ksiEtaRectangle, "ξ", "η");
+			}
+		});
 		
 		// Need to get both edge and net points from both of figures and build new reflection
 		/* 

@@ -21,13 +21,14 @@ public class RectangleHelper {
 		double[] aCoordinates = a.getCoordinates();
 		double[] cCoordinates = c.getCoordinates();
 		
-		Point[][] netPoints = new Point[yMarksNumber + 1][xMarksNumber + 1];
+		Point[][] netPoints = new Point[yMarksNumber - 1][xMarksNumber - 1];
 
-		for (int i = 0; i <= yMarksNumber; i++) {
-			for (int j = 0; j <= xMarksNumber; j++) {
+		// Net is not including edge points
+		for (int i = 0; i < yMarksNumber - 1; i++) {
+			for (int j = 0; j < xMarksNumber - 1; j++) {
 				netPoints[i][j] = new Point(new double[] {
-					aCoordinates[0] + xAxisStep * j,
-					cCoordinates[1] - yAxisStep * i
+					aCoordinates[0] + xAxisStep * (j + 1),
+					cCoordinates[1] - yAxisStep * (i + 1)
 				});
 			}
 		}

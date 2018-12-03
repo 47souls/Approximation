@@ -89,7 +89,7 @@ public class Trapezium extends ConvexPolygon {
 		
 		double xABDistance = bCoordinates[0] - aCoordinates[0];
 		double yDistance = cCoordinates[1] - bCoordinates[1];
-		double xCDDistance = cCoordinates[1] - dCoordinates[1];
+		double xCDDistance = cCoordinates[0] - dCoordinates[0];
 		
 		double abXAxisStep = xABDistance / numberOfPointsX; 
 		double cdXAxisStep = xCDDistance / numberOfPointsX; 
