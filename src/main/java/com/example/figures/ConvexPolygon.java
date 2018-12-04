@@ -1,11 +1,14 @@
 package com.example.figures;
 
+import java.util.stream.Stream;
+
 import com.example.point.Point;
 
 public abstract class ConvexPolygon {
 
 	protected Point[] edgePoints;
 	protected Point[][] netPoints;
+	protected Point[] allPoints;
 
 	public Point[] getEdgePoints() {
 		return edgePoints;
@@ -21,6 +24,14 @@ public abstract class ConvexPolygon {
 
 	public void setNetPoints(Point[][] netPoints) {
 		this.netPoints = netPoints;
+	}
+
+	public Point[] getAllPoints() {
+		return allPoints;
+	}
+
+	public void setAllPoints(Point[] allPoints) {
+		this.allPoints = allPoints;
 	}
 
 	protected String printNetPoints(Point[][] netPoints) {
@@ -43,7 +54,12 @@ public abstract class ConvexPolygon {
 			return "";
 		}
 	}
-
+	
+	public void setAllPoints() {
+		// Fuck this shit. But you should do it today man.
+		Point[][] allPoints = new Point[][];
+	}
+	
 	protected abstract void initAllVertexes();
 
 }

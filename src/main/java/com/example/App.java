@@ -3,71 +3,29 @@ package com.example;
 import javax.swing.SwingUtilities;
 
 import com.example.calculator.Calculator2D;
+import com.example.calculator.GenericCalculator;
 import com.example.figures.Rectangle;
 import com.example.figures.Trapezium;
 import com.example.gui.GraphFrame;
 import com.example.helper.RectangleHelper;
 import com.example.helper.ReflectionHelper;
 import com.example.point.Point;
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.QuickChart;
-import com.xeiam.xchart.SwingWrapper;
 
 public class App {
 	public static void main(String[] args) {
-		
-		// 1D case
-//		List<Double> xValues = new ArrayList<>();
-//		for (int i = 0; i < 12; i++) {
-//			xValues.add(i * 0.2);
-//		}
-//
-//		List<Double> yValues = new ArrayList<>();
-//		for (int i = 0; i < 12; i++) {
-//			yValues.add(Math.sin(i * 0.2));
-//		}
-//		
-//		Calculator1D calculator = new Calculator1D(xValues, yValues, "multiQuadro", 0.1);
-//		
-//		//
-//		calculator.approximate(0.3);
-		
-		// 2D case
-//		List<Point> xyPoints = new ArrayList<>();
-//		xyPoints.add(new Point(new double[] {1.0, 1.0}));
-//		xyPoints.add(new Point(new double[] {2.0, 1.0}));
-//		xyPoints.add(new Point(new double[] {3.0, 1.0}));
-//		xyPoints.add(new Point(new double[] {3.0, 2.0}));
-//		xyPoints.add(new Point(new double[] {3.0, 3.0}));
-//		xyPoints.add(new Point(new double[] {2.0, 3.0}));
-//		xyPoints.add(new Point(new double[] {1.0, 3.0}));
-//		xyPoints.add(new Point(new double[] {1.0, 2.0}));
-//
-//		List<Point> ksietaPoints = new ArrayList<>();
-//		ksietaPoints.add(new Point(new double[] {1.0, 1.0}));
-//		ksietaPoints.add(new Point(new double[] {2.0, 1.0}));
-//		ksietaPoints.add(new Point(new double[] {3.0, 1.0}));
-//		ksietaPoints.add(new Point(new double[] {4.0, 1.0}));
-//		ksietaPoints.add(new Point(new double[] {2.0, 3.0}));
-//		ksietaPoints.add(new Point(new double[] {1.0, 4.0}));
-//		ksietaPoints.add(new Point(new double[] {1.0, 3.0}));
-//		ksietaPoints.add(new Point(new double[] {1.0, 2.0}));
-//		
-//		Calculator2D calculator = new Calculator2D(xyPoints, ksietaPoints, "multiQuadro", 0.1);
-//		//
-//		Point resultOnXY = calculator.approximate(new Point(new double[] {2.0, 2.0}));
-//		
-//		System.out.println("Resulting point: " + resultOnXY);
-		
 		// 1. Creating figures
 		Rectangle ksiEtaRectangle = new Rectangle(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 4.0}), 0.5, 0.5);
+		RectangleHelper.fillNet(ksiEtaRectangle, 0.5, 0.5);
+		ksiEtaRectangle.setAllPoints();
+		
 		Trapezium xyTrapezium = new Trapezium(new Point(new double[] {1.0, 1.0}), new Point(new double[] {4.0, 1.0}), new Point(new double[] {3.0, 3.0}), 6, 6);
 		// 2. Calculating edge points using steps, for circle that should be crazy!
 		
 		// 3. Filling net
-		RectangleHelper.fillNet(ksiEtaRectangle, 0.5, 0.5);
+		
 		// 4. Reflecting net
 		ReflectionHelper.reflectNet(xyTrapezium, ksiEtaRectangle);
+		xyTrapezium.setAllPoints();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			
@@ -96,7 +54,12 @@ public class App {
 		 * 
 		 * 
 		 * */
+		String functionName = GenericCalculator.MULTI_QUADRO_FUNCTION_NAME;
+		double e = 0.1;
+		// Pay attention here coordinates are consumed in reversed order
+		Calculator2D reversedCalculator = new Calculator2D(ksiEtaRectangle.getAllPoints(), xyTrapezium.getAllPoints(), functionName, e);
 		
-		//Calculator2D reversedCalculator = new Calculator2D(xyPoints, ksietaPoints, functionName, e)
+		Point result = reversedCalculator.approximate(new Point(new double[] { 2.5, 2.5}));
+		System.out.println(result);
 	}
 }

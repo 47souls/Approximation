@@ -1,6 +1,7 @@
 package com.example.figures;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import com.example.point.Point;
 
