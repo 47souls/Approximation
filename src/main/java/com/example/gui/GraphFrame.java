@@ -1,6 +1,7 @@
 package com.example.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
@@ -10,6 +11,8 @@ import com.example.figures.ConvexPolygon;
 import com.example.point.Point;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.ChartBuilder;
+import com.xeiam.xchart.Series;
+import com.xeiam.xchart.SeriesMarker;
 import com.xeiam.xchart.StyleManager.ChartType;
 import com.xeiam.xchart.XChartPanel;
 
@@ -55,10 +58,10 @@ public class GraphFrame extends JFrame {
 				.xAxisTitle(bottomAxisName)
 				.yAxisTitle(topAxisName)
 				.build();
+				
+		Series series = chart.addSeries(figure.getClass().getSimpleName(), xCoordinates, yCoordinates);
+		series.setLineColor(Color.BLACK);
 		
-		chart.getStyleManager();
-		chart.addSeries(figure.getClass().getSimpleName(), xCoordinates, yCoordinates);
-
 		// Adding figure net points to the plot
 		Point[][] netPoints = figure.getNetPoints();
 		int rows = netPoints.length;
@@ -75,9 +78,11 @@ public class GraphFrame extends JFrame {
 			}
 
 			// TODO:
-			// 1) How to add series of same color???
-			// 2) How to remove series name from right part of screen
-			chart.addSeries(i + " ", xCoordinatesHorizontalNet, yCoordinatesHorizontalNet);
+			// 1) How to remove series name from right part of screen
+			Series horizontalSeries = chart.addSeries(i + " ", xCoordinatesHorizontalNet, yCoordinatesHorizontalNet);
+			horizontalSeries.setLineColor(Color.decode("#C16200"));
+			horizontalSeries.setMarker(SeriesMarker.TRIANGLE_UP);
+			horizontalSeries.setMarkerColor(Color.decode("#87C45C"));
 		}
 
 		// drawing vertical lines on net
@@ -92,8 +97,11 @@ public class GraphFrame extends JFrame {
 
 			// TODO:
 			// 1) How to add series of same color???
-			// 2) How to remove series name from right part of screen
-			chart.addSeries(System.currentTimeMillis() + j + " ", xCoordinatesVerticalNet, yCoordinatesVerticalNet);
+			// 2) How to remove series name from right part of screen.
+			Series verticalSeries = chart.addSeries(System.currentTimeMillis() + j + " ", xCoordinatesVerticalNet, yCoordinatesVerticalNet);
+			verticalSeries.setLineColor(Color.decode("#C16200"));
+			verticalSeries.setMarker(SeriesMarker.TRIANGLE_UP);
+			verticalSeries.setMarkerColor(Color.decode("#87C45C"));
 		}
 
 		return new XChartPanel(chart);
