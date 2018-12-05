@@ -59,7 +59,7 @@ public class App {
 		// Pay attention here coordinates are consumed in reversed order
 		Calculator2D reversedCalculator = new Calculator2D(ksiEtaRectangle.getAllPoints(), xyTrapezium.getAllPoints(), functionName, e);
 		
-		Point result = reversedCalculator.approximate(new Point(new double[] { 2.5, 2.5}));
+		Point result = reversedCalculator.approximate(new Point(new double[] { 3.25, 2.0}));
 		System.out.println(result);
 	}
 }

@@ -1,7 +1,5 @@
 package com.example.figures;
 
-import java.util.stream.Stream;
-
 import com.example.point.Point;
 
 public abstract class ConvexPolygon {
@@ -57,7 +55,28 @@ public abstract class ConvexPolygon {
 	
 	public void setAllPoints() {
 		// Fuck this shit. But you should do it today man.
-		Point[][] allPoints = new Point[][];
+		int edgePointsLenght = edgePoints.length;
+		int netRows = netPoints.length;
+		int netColumns = netPoints[0].length;
+		
+		int size = edgePointsLenght + netRows * netColumns;
+		
+		Point[] allPoints = new Point[size];
+		
+		int i = 0;
+		
+		for (; i < edgePointsLenght; i++) {
+			allPoints[i] = edgePoints[i];
+		}
+		
+		for (int k = 0; k < netRows; k++) {
+			for (int j = 0; j < netColumns; j++) {
+				allPoints[i] = netPoints[k][j];
+				i++;
+			}
+		}
+		
+		setAllPoints(allPoints);
 	}
 	
 	protected abstract void initAllVertexes();
