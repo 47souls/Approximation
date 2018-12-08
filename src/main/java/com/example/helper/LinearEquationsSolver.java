@@ -1,13 +1,13 @@
 package com.example.helper;
 
 public class LinearEquationsSolver {
-	
+
 	/* Solving system of linear equations */
 	public static double[] solve(double[] xCoordinatesCopy, double[][] fi) {
 		int counter = 0;
 		int numberOfLines = xCoordinatesCopy.length;
 		double[] constants = new double[numberOfLines];
-		
+
 		/* Algorithm go ahead */
 		while (counter < numberOfLines) {
 			double temp = fi[counter][counter];
@@ -28,10 +28,10 @@ public class LinearEquationsSolver {
 			}
 			counter++;
 		}
-		
+
 		/* Algorithm go behind */
 		constants[numberOfLines - 1] = xCoordinatesCopy[numberOfLines - 1];
-		
+
 		for (int i = numberOfLines - 2; i >= 0; i--) {
 			double temp = 0;
 			for (int j = i + 1; j < numberOfLines; j++) {
@@ -39,7 +39,7 @@ public class LinearEquationsSolver {
 			}
 			constants[i] = xCoordinatesCopy[i] - temp;
 		}
-		
+
 		return constants;
 	}
 }
